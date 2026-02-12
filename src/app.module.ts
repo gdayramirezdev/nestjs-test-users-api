@@ -3,6 +3,8 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { GhibliModule } from './ghibli/ghibli.module';
 
 
 @Module({
@@ -20,10 +22,12 @@ import { User } from './users/user.entity';
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
         entities: [User],
-        synchronize: false,
+        synchronize: true,
       }),
     }),
-    UsersModule],
+    UsersModule,
+    AuthModule,
+    GhibliModule],
   controllers: [],
   providers: [],
 })

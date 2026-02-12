@@ -18,7 +18,7 @@ export class UsersService {
     if (exists) {
       throw new Error('Email already exists')
     }
-    
+
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user = this.userModel.create({
       ...data,
@@ -43,5 +43,9 @@ export class UsersService {
 
   async delete(id: string): Promise<void>  {
     await this.userModel.delete(id);
+  }
+
+  async findByEmail(email: string) : Promise<User | null> {
+    return await this.userModel.findOne({ where: { email } });
   }
 }

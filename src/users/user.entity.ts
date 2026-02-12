@@ -10,6 +10,14 @@ export enum Role {
   VEHICLES = 'vehicles',
 };
 
+export const allowedRoles: Role[] = [
+  Role.FILMS,
+  Role.PEOPLE,
+  Role.LOCATIONS,
+  Role.SPECIES,
+  Role.VEHICLES,
+];
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
