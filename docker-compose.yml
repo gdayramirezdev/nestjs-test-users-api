@@ -1,0 +1,22 @@
+version: "1.0"
+services:
+  db:
+    image: postgres:15
+    container_name: users-api-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: usersdb
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    command: npm run start:dev
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
