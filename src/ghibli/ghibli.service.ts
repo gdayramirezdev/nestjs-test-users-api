@@ -1,10 +1,12 @@
-import { Injectable, ForbiddenException } from '@nestjs/common'
-import axios from 'axios'
-import { allowedRoles, Role } from 'src/users/user.entity'
+import { ForbiddenException, Injectable } from "@nestjs/common";
+import axios from "axios";
+import { gibhliApi } from "src/contants";
+import { allowedRoles, Role } from "src/users/user.entity";
+
 
 @Injectable()
 export class GhibliService {
-  private readonly api = axios.create({ baseURL: 'https://ghibliapi.vercel.app' })
+  private readonly api = axios.create({ baseURL: gibhliApi });
 
   async getByRole(role: Role) {
 

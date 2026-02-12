@@ -1,0 +1,1 @@
+export const gibhliApi = 'https://ghibliapi.vercel.app';
