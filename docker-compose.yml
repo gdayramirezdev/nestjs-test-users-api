@@ -1,22 +1,32 @@
-version: "1.0"
 services:
-  db:
-    image: postgres:15
-    container_name: users-api-postgres
-    restart: always
-    environment:
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: usersdb
-    ports:
-      - "5432:5432"
-
   api:
     build: .
-    command: npm run start:dev
-    volumes:
-      - .:/usr/src/app
+    container_name: nestjs-users-api
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     depends_on:
-      - db
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: usersdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
