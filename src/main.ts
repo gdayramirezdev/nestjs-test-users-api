@@ -17,13 +17,14 @@ async function bootstrap() {
 
   // swagger doc setup
   const config = new DocumentBuilder()
-  .setTitle('Ghibli Users API')
-  .setDescription('API de usuarios con Studio Ghibli')
-  .setVersion('1.0')
-  .build();
+    .setTitle('Users API')
+    .setDescription('API Docs')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build()
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('docs', app, document)
 
   // all exceptions filter setup
   app.useGlobalFilters(new AllExceptionsFilter())
