@@ -47,13 +47,7 @@ docker compose up --build
 Tener instalado postgresql o bien lanzar un contenedor docker
 
 ```bash
-docker run -d \          
-  --name postgres-db \
-  -e POSTGRES_USER=postgres \
-  -e POSTGRES_PASSWORD=postgres \
-  -e POSTGRES_DB=usersdb \
-  -p 5432:5432 \
-  postgres:15
+docker run -d --name postgres-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=usersdb -p 5432:5432 postgres:15
 ```
 
 Crear archivo .env en la raíz del proyecto, ejemplo:
