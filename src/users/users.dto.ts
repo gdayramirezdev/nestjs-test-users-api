@@ -1,8 +1,8 @@
-import { IsEmail, IsEnum, IsString, MinLength } from 'class-validator'
-import { Role } from './user.entity'
-import { PartialType } from '@nestjs/mapped-types'
-import { ApiProperty } from '@nestjs/swagger'
-import { IsStrongPassword } from 'class-validator'
+import { IsEmail, IsEnum, IsString } from 'class-validator';
+import { Role } from './user.entity';
+import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsStrongPassword } from 'class-validator';
 
 
 export class CreateUserDto {

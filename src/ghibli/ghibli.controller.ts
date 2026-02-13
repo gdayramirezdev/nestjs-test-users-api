@@ -1,9 +1,9 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common'
-import { GhibliService } from './ghibli.service'
-import { JwtAuthGuard } from '../auth/jwt-auth.guard'
-import { RoleGuard } from '../common/guards/roles.guard'
-import { Role } from 'src/users/user.entity'
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { GhibliService } from './ghibli.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RoleGuard } from '../common/guards/roles.guard';
+import { Role } from 'src/users/user.entity';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('ghibli')
 @ApiTags('Ghibli')

@@ -1,6 +1,18 @@
-export default {
+import type { Config } from 'jest'
+
+const config: Config = {
+  moduleNameMapper: {
+    '^src/(.*)$': '<rootDir>/src/$1',
+  },
+  moduleFileExtensions: ['js', 'json', 'ts'],
+  rootDir: '.',
+  testRegex: '.*\\.spec\\.ts$',
+  transform: {
+    '^.+\\.(t|j)s$': 'ts-jest',
+  },
   collectCoverage: true,
-  coverageDirectory: 'coverage',
+  coverageDirectory: './coverage',
+  testEnvironment: 'node',
   coverageThreshold: {
     global: {
       branches: 80,
@@ -10,3 +22,5 @@ export default {
     },
   },
 }
+
+export default config
