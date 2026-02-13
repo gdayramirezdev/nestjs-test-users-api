@@ -1,5 +1,5 @@
-import { Exclude } from 'class-transformer'
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm'
+import { Exclude } from 'class-transformer';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Role {
   ADMIN = 'admin',
