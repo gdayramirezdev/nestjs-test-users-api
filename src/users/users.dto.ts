@@ -6,19 +6,26 @@ import { IsStrongPassword } from 'class-validator'
 
 
 export class CreateUserDto {
-  @ApiProperty()
+  @ApiProperty({ description: 'name for user'})
   @IsString()
   name: string
   
-  @ApiProperty()
+  @ApiProperty({
+    description: 'valid email example foo@bar.com'
+  })
   @IsEmail()
   email: string
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'role for user',
+    enum: ['admin', 'films', 'people', 'locations', 'species', 'vehicles']
+  })
   @IsEnum(Role)
   role: Role
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'minLength 8, minLowercase 1, minUppercase 1, minNumbers 1, minSymbols 1'
+  })
   @IsStrongPassword({
     minLength: 8,
     minLowercase: 1,
