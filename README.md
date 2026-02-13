@@ -16,6 +16,10 @@ JWT_SECRET=supersecret
 JWT_EXPIRES_IN=1h
 ```
 
+### Documentacion para usar API
+
+http://127.0.0.1:3000/docs
+
 ## Ejecutar el proyecto con Docker Compose
 
 ### Requisitos
