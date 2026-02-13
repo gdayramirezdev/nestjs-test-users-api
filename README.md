@@ -2,23 +2,8 @@
 
 API para crear usuarios, consumir API Ghibli por role de usuarios, authenticar usuarios, poder editarlos y consumirlos.
 
-## Para probar en cualquier ambiente 
-Crear archivo .env en la raíz del proyecto, ejemplo:
-
-```env
-PORT=3000
-DB_HOST=postgres
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_NAME=usersdb
-JWT_SECRET=supersecret
-JWT_EXPIRES_IN=1h
-```
-
-### Documentacion para usar API
-
-http://127.0.0.1:3000/docs
+Es importante tener el archivo con las variables de entorno correctas,
+sobre todo con DB_HOST=postgres para produccion o DB_HOST=localhost para ambiente local.
 
 ## Ejecutar el proyecto con Docker Compose
 
@@ -34,6 +19,19 @@ Verifica con:
 ```bash
 docker -v
 docker compose version
+```
+
+Crear archivo .env en la raíz del proyecto, ejemplo:
+
+```env
+PORT=3000
+DB_HOST=postgres
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=usersdb
+JWT_SECRET=supersecret
+JWT_EXPIRES_IN=1h
 ```
 
 Construir y levantar los contenedores
@@ -56,6 +54,19 @@ docker run -d \
   -e POSTGRES_DB=usersdb \
   -p 5432:5432 \
   postgres:15
+```
+
+Crear archivo .env en la raíz del proyecto, ejemplo:
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=usersdb
+JWT_SECRET=supersecret
+JWT_EXPIRES_IN=1h
 ```
 
 Para poder lanzar el proyecto en entorno local
