@@ -2,8 +2,10 @@ import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/comm
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './users.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('Users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
@@ -11,26 +13,33 @@ export class UsersController {
 
   // for creating users an access_token is not required in POST /users
   @Post()
+  @ApiOperation({ summary: 'Create new users' })
   async create(@Body() body: CreateUserDto) {
     return await this.usersService.create(body);
   }
 
   // for consuming data from data base is required an access_token
   @Get()
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.usersService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get user by id' })
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   async findOne(@Param('id') id: string) {
     return await this.usersService.findOne(id);
   }
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
-  async update(@Param('id') id: string, @Body() body: UpdateUserDto) {
+  @ApiOperation({ summary: 'Update user by id' })
+  @ApiBearerAuth()
+  async update(@Param('id') id: string, @Body() body: CreateUserDto) {
     return await this.usersService.update(id, body);
   }
 }
