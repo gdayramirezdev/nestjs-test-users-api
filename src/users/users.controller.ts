@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './users.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -21,7 +21,7 @@ export class UsersController {
   // for consuming data from data base is required an access_token
   @Get()
   @ApiOperation({ summary: 'Get all users' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.usersService.findAll();
@@ -30,7 +30,7 @@ export class UsersController {
   @Get(':id')
   @ApiOperation({ summary: 'Get user by id' })
   @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @ApiBearerAuth('bearer')
   async findOne(@Param('id') id: string) {
     return await this.usersService.findOne(id);
   }
@@ -38,8 +38,16 @@ export class UsersController {
   @Put(':id')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Update user by id' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('bearer')
   async update(@Param('id') id: string, @Body() body: CreateUserDto) {
     return await this.usersService.update(id, body);
+  }
+
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Delete user by id' })
+  @ApiBearerAuth('bearer')
+  async delete(@Param('id') id: string) {
+    return await this.usersService.delete(id);
   }
 }

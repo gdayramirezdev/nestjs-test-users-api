@@ -5,6 +5,8 @@ import { User } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './users.dto';
 import * as bcrypt from 'bcrypt';
 import { plainToInstance } from 'class-transformer';
+import { UpdateResult } from 'typeorm/browser';
+import { DeleteResult } from 'typeorm/browser';
 
 @Injectable()
 export class UsersService {
@@ -37,12 +39,12 @@ export class UsersService {
     return plainToInstance(User, user); // forzar el no mostrar contraseña desde entity 
   }
 
-  async update(id: string, data: UpdateUserDto): Promise<void> {
-    await this.userModel.update(id, data); // forzar el no mostrar contraseña desde entity
+  async update(id: string, data: UpdateUserDto): Promise<UpdateResult> {
+    return await this.userModel.update(id, data); // forzar el no mostrar contraseña desde entity
   }
 
-  async delete(id: string): Promise<void>  {
-    await this.userModel.delete(id);
+  async delete(id: string): Promise<DeleteResult>  {
+    return await this.userModel.delete(id);
   }
 
   async findByEmail(email: string) : Promise<User | null> {

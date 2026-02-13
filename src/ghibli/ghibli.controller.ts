@@ -13,7 +13,7 @@ export class GhibliController {
   @Get(':category')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @ApiOperation({ summary: 'Get category from ghibli API' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('bearer')
   async getByCategory(@Param('category') category: string) {
     return this.ghibliService.getByRole(category as Role);
   }
